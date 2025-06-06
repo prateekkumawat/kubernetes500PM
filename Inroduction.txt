@@ -1,0 +1,16 @@
+# How to manage cluster in kubernetes 
+1. kubeadm ----> command manage or operate cluster / cluster command 
+2. kubectl ----> manage update create your resource in kubernetes / client command
+
+# what is the way to pass instruction 
+1. imperative --- using kubernetes command  
+2. Declerative ---- using kubernetes yaml 
+3. GUI ---- K9S LANCE kubernetesUI
+
+# HOW TO manage kubernetes container 
+working with pods ---- kubernetes manage pods ---- pods is manage container 
+pod::: pod is smallest unit in kubernetes to manage your container. pod is provide and manage security context, storage and
+connectivity, pod can be single or a multiple 
+
+
+
