@@ -1,0 +1,26 @@
+apiVersion: apps/v1          # ----> api version for kubernetes resources
+kind: Deployment             # ----> kind of resource, here it's a Deployment pod or deamsets or statefulset
+metadata:                    # ----> metadata for the resource name and labels namespace 
+  name: myapp                # ----> name of the deployment
+  labels:                    # ----> labels for the deployment
+    app: myapp               # ----> label key-value pair
+spec:                        # ----> specification of the deployment
+  replicas: 1                # ----> number of replicas for the deployment
+  selector:                  # ----> selector for the deployment to match pods
+    matchLabels:             # ----> match labels for the selector
+      app: myapp             # ----> label key-value pair to match pods
+  template:                  # ----> template for the pod
+    metadata:                # ----> metadata for the pod template
+      name: myapp            # ----> name of the pod template
+      labels:                # ----> labels for the pod template
+        app: myapp           # ----> label key-value pair for the pod template 
+    spec:                    # ----> specification for the pod template and containers 
+      containers:
+      - name: myapp          # ----> name of the container  
+        image: <Image>       # ----> image for the container
+        resources:           # ----> resources for the container and limits
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: <Port>  # ----> container port for the container

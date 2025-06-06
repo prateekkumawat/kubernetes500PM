@@ -7,4 +7,4 @@ $ kubectl describe pod pod_name
 # Delete pod in kubernetes 
 $kubectl delete pod nginx
 
-# 
+#   

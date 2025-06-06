@@ -10,7 +10,15 @@
 # HOW TO manage kubernetes container 
 working with pods ---- kubernetes manage pods ---- pods is manage container 
 pod::: pod is smallest unit in kubernetes to manage your container. pod is provide and manage security context, storage and
-connectivity, pod can be single or a multiple 
+connectivity, pod can be single or a multiple, pod can be use for small application 
+
+pod failure and manage kuberntes usages diffrent workflow 
+- Deployment ----> most of application manage by using Deployment. pod scale, update rolling and rollout 
+- Daemonsets ---> Ensure pod is running on ecery node use cases network storage logging monitor 
+- ReplicaSet ---> same for scale, Deployment uses replicaset for scale
+- Statefulset ---> if your application manageing states for transition so that application un using it like database or proxy and LB 
+- Jobs ----> for running batch jobs 
+- Cron ----> for cron schdule 
 
 
 
