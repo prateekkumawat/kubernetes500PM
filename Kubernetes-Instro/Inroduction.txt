@@ -20,5 +20,9 @@ pod failure and manage kuberntes usages diffrent workflow
 - Jobs ----> for running batch jobs 
 - Cron ----> for cron schdule 
 
-
+for kubernetes access and expose method 
+1. ClusterIp :::: only access from kubernetes cluster machines 
+2. NodePort  :::: access from node ip but port range 30000-32767
+3. Loadbalancer ::::: using cloud provider lb or external lb ---aws ALB azureLoadBalancer gcploadbalancer 
+5. Externalendpoints ::::: external ip or Externalendpoints
 

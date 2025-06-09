@@ -7,4 +7,8 @@ $ kubectl describe pod pod_name
 # Delete pod in kubernetes 
 $kubectl delete pod nginx
 
-#   
+#  Detailed of pod running in k8s
+$ kubectl get pod -A -o wide 
+
+# connect and login into pod 
+$ kubectl exec -it mysql-database-75b58484db-l9hd2 -- bash
