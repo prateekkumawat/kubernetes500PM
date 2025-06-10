@@ -16,3 +16,6 @@ $ kubectl exec -it mysql-database-75b58484db-l9hd2 -- bash
 # Expose Command 
 kubectl expose deployment deployment_name --name deployment-name-svc --port svc_port --target-port container_port --ty
 pe ClusterIP | NodePort | LB
+
+# restart deployment 
+$ kubectl rollout restart deployment mysql-database
