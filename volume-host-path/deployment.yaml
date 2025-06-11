@@ -17,7 +17,7 @@ spec:
             claimName: learning-pvc
       containers:
       - name: learning-pv
-        image: nginx:latest"
+        image: nginx:latest
         ports:
         - containerPort: 80
         volumeMounts:
