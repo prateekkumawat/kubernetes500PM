@@ -1,0 +1,14 @@
+# apply rancher host path storage class for Dynamic Provisioning lik on whatsapp
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: learning-pvc
+  labels:
+    app: learning-pv-app
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  storageClassName: local-path

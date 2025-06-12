@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: learning-pv
+spec:
+  selector:
+    matchLabels:
+      app: learning-pv
+  template:
+    metadata:
+      labels:
+        app: learning-pv
+    spec:
+      volumes:
+        - name: webdata
+          persistentVolumeClaim: 
+            claimName: learning-pvc
+      containers:
+      - name: learning-pv
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: webdata
+          mountPath: /usr/share/nginx/html
