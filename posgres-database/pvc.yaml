@@ -1,0 +1,14 @@
+# apply rancher host path storage class for Dynamic Provisioning lik on whatsapp
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-database-data0
+  labels:
+    app: postgres-database-app
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-path
