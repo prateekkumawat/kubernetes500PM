@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-database
+  labels:
+    app: postgres-database
+spec:
+  selector:
+    matchLabels:
+      app: postgres-database
+  template:
+    metadata:
+      labels:
+        app: postgres-database
+    spec:
+      containers:
+      - name: postgres-database
+        image: postgres:latest
+        ports:
+        - containerPort: 5432
+        env: 
+        - name: POSTGRES_PASSWORD
+          value: redha

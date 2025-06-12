@@ -2,9 +2,9 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: learning-pvc
+  name: postgres-database-data0
   labels:
-    app: learning-pv-app
+    app: postgres-database-app
 spec:
   resources:
     requests:
