@@ -5,7 +5,10 @@ metadata:
 provisioner: nfs.csi.k8s.io
 reclaimPolicy: Delete
 volumeBindingMode: WaitForFirstConsumer
+allowVolumeExpansion: true
+mountOptions:
+  - nfsvers=4.1
 parameters:
   server: 172.31.14.233
-  path: /container_data/sharedata
-  readOnly: "false"
+  share: /container_data/sharedata
+
