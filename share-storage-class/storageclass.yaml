@@ -3,6 +3,8 @@ kind: StorageClass
 metadata:
   name: nfs-store
 provisioner: nfs.csi.k8s.io
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer
 parameters:
   server: 172.31.14.233
   path: /container_data/sharedata
