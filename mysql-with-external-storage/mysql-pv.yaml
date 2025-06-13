@@ -2,8 +2,8 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: mysql-database-persistent-vol
-  label:
-    app: mysql-database
+  labels:
+   app: mysql-database
 spec:
   capacity:
     storage: 1Gi
