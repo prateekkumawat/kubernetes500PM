@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-database
+  labels:
+    app: mysql-database
+spec:
+  selector:
+    matchLabels:
+      app: mysql-database
+  template:
+    metadata:
+      labels:
+        app: mysql-database
+    spec:
+      volumes:
+        - name: mysql-data-collections
+          persistentVolumeClaim: 
+            claimName: mysql-database-pvc-data0
+      containers:
+      - name: mysql-database
+        image: mysql:latest
+        ports:
+        - containerPort: 3306
+        resources:
+          requests:
+            memory: "1000Mi"
+            cpu: 1
+          limits: 
+            memory: "3000Mi"
+            cpu: "2"  
+        env: 
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-database-secret
+              key: password
+        volumeMounts:
+          - name: mysql-data-collections
+            mountPath: /var/lib/mysql  
