@@ -19,7 +19,7 @@ spec:
             claimName: mongo-server-data0
       containers:
       - name: mongo-server-db
-        image: mongodb/mongodb-community-server
+        image: mongo:6
         resources:
           requests:
             memory: "1000Mi"
