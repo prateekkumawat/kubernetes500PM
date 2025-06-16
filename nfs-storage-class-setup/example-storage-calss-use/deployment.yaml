@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-server-db
+  labels: 
+    app: mongo-server-db
+spec:
+  selector:
+    matchLabels:
+      app: mongo-server-db
+  template:
+    metadata:
+      labels:
+        app: mongo-server-db   
+    spec:
+      volumes:
+        - name: mongo-data
+          persistentVolumeClaim: 
+            claimName: mongo-server-data0
+      containers:
+      - name: mongo-server-db
+        image: mongodb/mongodb-community-server
+        resources:
+          requests:
+            memory: "1000Mi"
+            cpu: "1"
+          limits:
+            memory: "2000Mi"
+            cpu: "2"
+        env: 
+         - name: MONGO_INITDB_ROOT_USERNAME
+           value: mango
+         - name: MONGO_INITDB_ROOT_PASSWORD 
+           value: man@#go123%
+        ports:
+        - containerPort: 27017
+        volumeMounts:
+          - name: mongo-data
+            mountPath: /data/db
+        
