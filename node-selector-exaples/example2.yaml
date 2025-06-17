@@ -1,8 +1,33 @@
-# 
+### pods assign without using nodeselector for check behaviour ##########3
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: node-selector-deployment
+# spec:
+#   replicas: 4
+#   selector:
+#     matchLabels:
+#       app: node-selector-deployment
+#   template:
+#     metadata:
+#       labels:
+#         app: node-selector-deployment
+#     spec:
+#       containers:
+#       - name: node-selector-deployment
+#         image: nginx:latest
+#         resources:
+#           limits:
+#             memory: "128Mi"
+#             cpu: "500m"
+#         ports:
+#         - containerPort: 80 
+
 
 # before apply this yaml assign label to node using below commands 
 # kubectl label node ip-172-31-15-199.ap-south-1.compute.internal application_stack=greenproject 
 # ;; change your node name above command # kubectl get node 
+# pod assign using nodeselector 
 ---
 apiVersion: apps/v1
 kind: Deployment
