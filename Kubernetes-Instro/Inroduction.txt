@@ -23,6 +23,21 @@ pod failure and manage kuberntes usages diffrent workflow
 for kubernetes access and expose method 
 1. ClusterIp :::: only access from kubernetes cluster machines 
 2. NodePort  :::: access from node ip but port range 30000-32767
-3. Loadbalancer ::::: using cloud provider lb or external lb ---aws ALB azureLoadBalancer gcploadbalancer 
-5. Externalendpoints ::::: external ip or Externalendpoints
+3. Loadbalancer ::::: using cloud provider lb or external lb ---aws ALB azu
+
+pods schduling in kubernetes cluster ( Assing pods to node )
+kuberntes schdule purpose kube-schduler used. auto schdule
+you require manual intervation for pod Deployment. 
+why need this to assign pods to nodes ? 
+ example let taken with problem statement: 
+ 1. they have 20 nodes cluster in this manage
+    - they have uncertain hardware avalibility like some server have 32 GB Ram and 4 CPU and some have 2 cpu 8 GB 
+      ram, apart of this 128 Gb Ram and 32 cpu. 
+    - manage application dedidcated node will assign for java , python, machine learning apps 
+    - kubernetes storage pod, monitoring pod, logging, kubernetes UI, nexus sonar pods or CI/CD tools they want 
+      to run this on particuler group of node 
+
+- node selector ----> on the basis on node label match assign pods 
+- taint and tolrations
+- affinity and anti-affinity 
 

@@ -1,0 +1,39 @@
+# kubernetes host based assign 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: node-selector-example1
+  labels:
+    name: node-selector-example1
+spec:
+  containers:
+  - name: node-selector-example1
+    image: nginx:latest
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80 
+  nodeSelector: 
+    kubernetes.io/hostname: ip-172-31-0-79.ap-south-1.compute.internal  
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: node-selector-example2
+  labels:
+    name: node-selector-example2
+spec:
+  containers:
+  - name: node-selector-example2
+    image: nginx:latest
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80 
+  nodeSelector: 
+    kubernetes.io/hostname: ip-172-31-15-199.ap-south-1.compute.internal
