@@ -21,3 +21,8 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 80 
+      tolerations:
+      - key: " kubernetes.io/nodedown"
+        operator: "equal"
+        value: "cpuhigh"
+        effect: "NoSchedule"  
