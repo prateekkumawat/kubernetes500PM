@@ -22,7 +22,7 @@ spec:
         ports:
         - containerPort: 80 
       tolerations:
-      - key: " kubernetes.io/nodedown"
+      - key: "nodedown"
         operator: "Equal"
         value: "cpuhigh"
         effect: "NoSchedule"  
