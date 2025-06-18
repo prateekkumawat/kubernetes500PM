@@ -26,3 +26,17 @@ spec:
         operator: "Equal"
         value: "cpuhigh"
         effect: "NoSchedule"  
+      affinity:
+        nodeAffinity:
+           requiredDuringSchedulingIgnoredDuringExecution:
+             nodeSelectorTerms:
+             - matchExpressions:
+               - key: component
+                 operator: In
+                 values:
+                 - msapp
+               - key: apptype
+                 operator: In
+                 values: 
+                 - java
+                 - common 
