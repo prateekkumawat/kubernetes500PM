@@ -169,3 +169,138 @@ portal:
     enabled: false     
   networkPolicy:
     enabled: false
+
+core:
+
+  image:
+    registry: docker.io
+    repository: bitnami/harbor-core
+    tag: 2.13.1-debian-12-r7
+  
+  quotaUpdateProvider: db
+  containerPorts:
+    http: 8080
+    https: 8443
+    metrics: 8001  
+  livenessProbe:
+    enabled: true
+    initialDelaySeconds: 20
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 6
+    successThreshold: 1  
+  readinessProbe:
+    enabled: true
+    initialDelaySeconds: 20
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 6
+    successThreshold: 1
+  podSecurityContext:
+    enabled: false
+  containerSecurityContext:
+    enabled: false
+  service:
+    ports:
+      http: 80
+      https: 443
+      metrics: 8001    
+  networkPolicy:
+    enabled: false
+
+jobservice:
+  image:
+    registry: docker.io
+    repository: bitnami/harbor-jobservice
+    tag: 2.13.1-debian-12-r4  
+  containerPorts:
+    http: 8080
+    https: 8443
+    metrics: 8001
+  replicaCount: 1      
+  livenessProbe:
+    enabled: true
+    initialDelaySeconds: 20
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 6
+    successThreshold: 1  
+  readinessProbe:
+    enabled: true
+    initialDelaySeconds: 20
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 6
+    successThreshold: 1
+  podSecurityContext:
+    enabled: false
+  containerSecurityContext:
+    enabled: false
+  service:
+    ports:
+      http: 80
+      https: 443
+      metrics: 8001    
+  networkPolicy:
+    enabled: false
+
+registry:
+  credentials:
+    username: harbor_registry_user
+    password: harbor_registry_password
+    ## If you update the username or password of registry, make sure use cli tool htpasswd to generate the bcrypt hash
+    ## e.g. "htpasswd -nbBC10 $username $password"
+    ##
+    htpasswd: harbor_registry_user:$2y$10$9L4Tc0DJbFFMB6RdSCunrOpTHdwhid4ktBJmLD00bYgqkkGOvll3m     
+
+  uploadPurging:
+    enabled: true
+    age: 168h
+    interval: 24h
+    dryrun: false
+
+  server: 
+    image:
+      registry: docker.io
+      repository: bitnami/harbor-registry
+      tag: 2.13.1-debian-12-r2    
+
+  controller: 
+    image:
+      registry: docker.io
+      repository: bitnami/harbor-registryctl
+      tag: 2.13.1-debian-12-r4    
+
+trivy: 
+  image:
+    registry: docker.io
+    repository: bitnami/harbor-adapter-trivy
+    tag: 2.13.1-debian-12-r2
+  insecure: true
+
+exporter: 
+  image:
+    registry: docker.io
+    repository: bitnami/harbor-exporter
+    tag: 2.13.1-debian-12-r5    
+
+
+postgresql:
+  enabled: true
+  auth:
+    enablePostgresUser: true
+    postgresPassword: not-secure-database-password
+    existingSecret: ""
+  architecture: standalone
+  primary:
+    extendedConfiguration: |
+      max_connections = 1024
+    initdb:
+      scripts:
+        initial-registry.sql: |
+          CREATE DATABASE registry ENCODING 'UTF8';
+          \c registry;
+          CREATE TABLE schema_migrations(version bigint not null primary key, dirty boolean not null);
+
+redis:
+  enabled: true          
