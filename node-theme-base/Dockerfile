@@ -10,9 +10,9 @@ COPY  evershop/packages ./packages
 COPY  evershop/themes ./themes
 COPY  evershop/extensions ./extensions
 COPY  evershop/public ./public
-COPY  evershop/media ./media
-COPY  evershop/config ./config
-COPY  evershop/translations ./translations
+#COPY  evershop/media ./media
+#COPY  evershop/config ./config
+#COPY  evershop/translations ./translations
 # update npm package 
 RUN npm install
 # run npm builder 
