@@ -1,0 +1,171 @@
+defaultStorageClass: local-path
+adminPassword: admin123
+logLevel: debug
+ipFamily:
+  ipv6:
+    enabled: false
+  ipv4:
+    enabled: true
+cache:
+  enabled: true
+  expireHours: 24    
+
+exposureType: ingress
+
+ingress:
+core:
+    ingressClassName: nginx
+    pathType: ImplementationSpecific
+    apiVersion: ""
+    hostname: harbor.ocelottraining.com
+    annotations:
+      ingress.kubernetes.io/ssl-redirect: "true"
+      ingress.kubernetes.io/proxy-body-size: "0"
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    tls: false
+    selfSigned: false
+
+persistence:
+  enabled: true
+  resourcePolicy: ""
+  persistentVolumeClaim:
+    registry:
+      existingClaim: ""
+      storageClass: local-path
+      subPath: ""
+      accessModes:
+        - ReadWriteOnce
+      size: 2Gi
+      annotations: {}
+      selector: {}
+
+    jobservice:
+      existingClaim: ""
+      storageClass: local-path
+      subPath: ""
+      accessModes:
+        - ReadWriteOnce
+      size: 1Gi
+      annotations: {}
+      selector: {}
+    trivy:
+      storageClass: local-path
+      accessModes:
+        - ReadWriteOnce
+      size: 2Gi
+      annotations: {}
+      selector: {}
+
+  imageChartStorage:
+    caBundleSecret: ""
+    disableredirect: false
+    type: filesystem
+    filesystem:
+      rootdirectory: /storage
+      maxthreads: ""
+    s3:
+      region: us-west-1
+      bucket: bucketname
+      accesskey: ""
+      secretkey: ""
+      regionendpoint: ""
+      encrypt: ""
+      keyid: ""
+      secure: ""
+      skipverify: ""
+      v4auth: ""
+      chunksize: ""
+      rootdirectory: ""
+      storageClass: ""
+      sse: ""
+      multipartcopychunksize: ""
+      multipartcopymaxconcurrency: ""
+      multipartcopythresholdsize: ""
+nginx:
+  image:
+    registry: docker.io
+    repository: bitnami/nginx
+    tag: 1.28.0-debian-12-r3
+    pullPolicy: IfNotPresent
+  tls:
+    enabled: false
+  behindReverseProxy: false
+  containerPorts:
+    http: 8080
+    https: 8443
+  replicaCount: 1
+  livenessProbe:
+    enabled: true
+    initialDelaySeconds: 20
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 6
+    successThreshold: 1
+  readinessProbe:
+    enabled: true
+    initialDelaySeconds: 20
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 6
+    successThreshold: 1
+  startupProbe:
+    enabled: false
+    initialDelaySeconds: 10
+    periodSeconds: 10
+    timeoutSeconds: 1
+    failureThreshold: 15
+    successThreshold: 1
+  resourcesPreset: "small"
+  resources: {}
+  podSecurityContext:
+    enabled: false
+    fsGroupChangePolicy: Always
+    sysctls: []
+    supplementalGroups: []
+    fsGroup: 1001
+  containerSecurityContext:
+    enabled: false
+    seLinuxOptions: {}
+    runAsUser: 1001
+    runAsGroup: 1001
+    runAsNonRoot: true
+    privileged: false
+    readOnlyRootFilesystem: true
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop: ["ALL"]
+    seccompProfile:
+      type: "RuntimeDefault"
+  updateStrategy:
+    type: RollingUpdate
+  serviceAccount:
+    create: false
+   
+portal:
+  image:
+    registry: docker.io
+    repository: bitnami/harbor-portal
+    tag: 2.13.1-debian-12-r2
+  containerPorts:
+    http: 8080
+    https: 8443
+  replicaCount: 1
+  livenessProbe:
+    enabled: true
+    initialDelaySeconds: 20
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 6
+    successThreshold: 1
+  readinessProbe:
+    enabled: true
+    initialDelaySeconds: 20
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 6
+    successThreshold: 1
+  containerSecurityContext:
+    enabled: false     
+  networkPolicy:
+    enabled: false
