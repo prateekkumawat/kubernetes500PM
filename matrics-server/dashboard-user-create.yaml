@@ -46,7 +46,7 @@ kind: ClusterRole
 metadata:
   name: developer-reader
 rules:
-- apiGroups: [""]
+- apiGroups: ["*"]
   resources: ["*"]
   verbs: ["get", "watch", "list"]
 
@@ -77,4 +77,5 @@ type: kubernetes.io/service-account-token
 
 ## token collection command 
 # kubectl get secret admin-user -n kubernetes-dashboard -o jsonpath="{.data.token}" | base64 -d
+# kubectl get secret developer -n kubernetes-dashboard -o jsonpath="{.data.token}" | base64 -d
 
