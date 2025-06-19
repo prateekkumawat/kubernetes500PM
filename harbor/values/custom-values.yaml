@@ -17,6 +17,7 @@ core:
     ingressClassName: nginx
     pathType: ImplementationSpecific
     apiVersion: ""
+    controller: default
     hostname: harbor.ocelottraining.com
     annotations:
       ingress.kubernetes.io/ssl-redirect: "true"
