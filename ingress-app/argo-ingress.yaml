@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: argo-ingres
-  namespace: agrocd
+  namespace: argocd
   labels:
     name: ingress-service-expose 
   annotations:
