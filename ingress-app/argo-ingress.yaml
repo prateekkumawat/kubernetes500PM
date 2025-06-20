@@ -1,7 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: argo-ingress
+  name: argo-ingres
+  namespace: agrocd
   labels:
     name: ingress-service-expose 
   annotations:
@@ -21,6 +22,22 @@ spec:
             name: argocd-argo-cd-server
             port: 
               number: 443
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dashboard-ingres
+  namespace: kubernetes-dashboard
+  labels:
+    name: ingress-service-expose-iu 
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: /     
+spec:
+  ingressClassName: nginx
+  rules:              
   - host: ui.mgmt.ocelottraining.com 
     http:
       paths:
