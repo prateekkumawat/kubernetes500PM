@@ -12,20 +12,20 @@ cache:
 
 exposureType: ingress
 
-ingress:
-core:
-  ingressClassName: nginx
-  pathType: ImplementationSpecific
-  apiVersion: ""
-  controller: default
-  hostname: harbor.ocelottraining.com
-  annotations:
-    ingress.kubernetes.io/ssl-redirect: "true"
-    ingress.kubernetes.io/proxy-body-size: "0"
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/proxy-body-size: "0"
-  tls: false
-  selfSigned: false
+# ingress:
+# core:
+#   ingressClassName: nginx
+#   pathType: ImplementationSpecific
+#   apiVersion: ""
+#   controller: default
+#   hostname: harbor.ocelottraining.com
+#   annotations:
+#     ingress.kubernetes.io/ssl-redirect: "true"
+#     ingress.kubernetes.io/proxy-body-size: "0"
+#     nginx.ingress.kubernetes.io/ssl-redirect: "true"
+#     nginx.ingress.kubernetes.io/proxy-body-size: "0"
+#   tls: false
+#   selfSigned: false
 
 persistence:
   enabled: true
