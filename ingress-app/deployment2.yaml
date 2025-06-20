@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mango-service
+spec:
+  selector:
+    matchLabels:
+      app: mango-service
+  template:
+    metadata:
+      labels:
+        app: mango-service
+    spec:
+      containers:
+      - name: mango-service
+        image: nginx:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mango-service
+spec:
+  selector:
+    app: mango-service
+  type: ClusterIP
+  ports:
+  - name: mango-service
+    port: 80
+    targetPort: 80       

@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apple-service
+spec:
+  selector:
+    matchLabels:
+      app: apple-service
+  template:
+    metadata:
+      labels:
+        app: apple-service
+    spec:
+      containers:
+      - name: apple-service
+        image: nginx:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: apple-service
+spec:
+  selector:
+    app: apple-service
+  type: ClusterIP
+  ports:
+  - name: apple-service
+    port: 80
+    targetPort: 80       
