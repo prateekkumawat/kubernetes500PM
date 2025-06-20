@@ -27,3 +27,23 @@ spec:
             name: mango-service
             port: 
               number: 80            
+  - host: apple.mgmt.ocelottraining.com 
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: apple-service
+            port: 
+              number: 80 
+  - host: mango.mgmt.ocelottraining.com 
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: mango-service
+            port: 
+              number: 80             
