@@ -18,7 +18,6 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: role-bind-developer
-  namespace: default
 subjects:
 # You can specify more than one "subject"
 - kind: User
