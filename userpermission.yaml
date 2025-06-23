@@ -4,12 +4,12 @@ metadata:
   # "namespace" omitted since ClusterRoles are not namespaced
   name: role-developer
 rules:
-- apiGroups: ["", "extensions", "apps"]
+- apiGroups: ["*", "extensions", "apps"]
   #
   # at the HTTP level, the name of the resource for accessing Secret
   # objects is "secrets"
-  resources: ["pods", "deployments", "replicasets", "pv", "pvc"]
-  verbs: ["get", "watch", "list", "create", "delete"]
+  resources: ["*", "pods", "deployments", "replicasets", "pv", "pvc"]
+  verbs: ["get", "watch", "list", "create"]
 
 
 ---
